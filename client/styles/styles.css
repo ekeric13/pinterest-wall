@@ -1,0 +1,31 @@
+html,
+body {
+  -webkit-font-smoothing: antialiased;
+  font-family: lato;
+}
+
+body {
+  /*padding: 10px 5px;*/
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+#main {
+  max-width: 100%;
+  margin:0 auto;
+  z-index: 1;
+}
+
+.pinterested {
+  text-align: center;
+  font-family: GillSans, Calibri, Trebuchet, sans-serif;
+  transition: all 0.45s ease-out;
+}
+
+.pinterested:hover {
+  background-color: white;
+  transition: all 0.45s ease-out;
+  color: #1565C0;
+}

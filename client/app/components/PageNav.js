@@ -29,11 +29,11 @@ var PageNav = React.createClass({
 
   handleWelcome: function() {
     //if logged in, redirect to rooms
-    if (this.state.currentUser){
-      this.transitionTo('/rooms');
-    } else {
-      this.transitionTo('/');
-    }
+    // if (this.state.currentUser){
+    //   this.transitionTo('/rooms');
+    // } else {
+    //   this.transitionTo('/');
+    // }
   },
 
   render: function() {
@@ -41,12 +41,9 @@ var PageNav = React.createClass({
       <div>
         <header>
           <nav>
-            <div className="blue darken-3">
-              <ul className="left hide-on-med-and-down">
-                <li>
-                  <div>Pinterested</div>
-                </li>
-              </ul>
+            <div className="nav-wrapper blue darken-3 row">
+              <div className="pinterested col s4 m3 l2"><span className="flow-text">Pinterested</span></div>
+
             </div>
           </nav>
         </header>
