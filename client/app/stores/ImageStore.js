@@ -8,30 +8,47 @@ var ImageStore = Reflux.createStore({
   _images: [],
 
   getAll: function() {
-    console.log("got all images")
+    console.log("got all images");
     return this._images;
   },
 
   getAllImages: function() {
     console.log("get all images");
-    var stub = [{_id: "1", url: "https://media.getchute.com/m/12I4gudgjf/c/2500342/500x300"}, {_id: "2", url: "https://media.getchute.com/m/12I4gudgjf/c/2500342/fit/500x300"}];
-    // return {
-    //   images: stub
-    // };
-    this._images = stub;
-    this.trigger();
-    // $.ajax({
-    //   type: 'GET',
-    //   url: '/images'
-    // })
-    // .done(function (images) {
-    //   this._images = images;
-    //   // broadcast that _ideas has changed
-    //   this.trigger();
-    // }.bind(this))
-    // .fail(function(error) {
-    //   console.error(error);
-    // });
+    // var stub = [{_id: "1", url: "https://media.getchute.com/m/12I4gudgjf/c/2500342/500x300"}, {_id: "2", url: "https://media.getchute.com/m/12I4gudgjf/c/2500342/fit/500x300"}];
+
+    // this._images = stub;
+    // this.trigger();
+    $.ajax({
+      type: 'GET',
+      url: 'http://getchute.com/v2/albums/aus6kwrg/assets/'
+    })
+    .done(function (images) {
+      var imageData = JSON.parse(images).data;
+      console.log("ajax complete2", JSON.parse(images));
+
+
+      for (var i = 0; i < imageData.length; i++) {
+        var imageAttributes = {};
+        var currentImageData = imageData[i];
+        imageAttributes["id"] = currentImageData.id;
+        imageAttributes["url"] = currentImageData.source.source_url;
+        imageAttributes["thumbnail"] = currentImageData.thumbnail;
+        imageAttributes["caption"] = currentImageData.caption;
+        imageAttributes["username"] = currentImageData.username;
+        imageAttributes["avatar"] = currentImageData.user.avatar;
+        imageAttributes["votes"] = currentImageData.votes;
+        imageAttributes["hearts"] = currentImageData.hearts;
+        imageAttributes["tags"] = currentImageData.tags;
+
+        this._images.push(imageAttributes);
+      }
+      console.log("done with for loop", this._images);
+      // broadcast that _images has changed
+      this.trigger();
+    }.bind(this))
+    .fail(function(error) {
+      console.error(error);
+    });
   },
 
   getImage: function(imageId) {
