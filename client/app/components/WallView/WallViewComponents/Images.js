@@ -21,16 +21,18 @@ var Images = React.createClass({
   },
 
   componentDidMount: function () {
-    console.log("images component mount");
-    ImageActions.getAllImages();
+    console.log("images component mount", this.state.images.length);
+    if (this.state.images.length === 0) {
+      ImageActions.getAllImages();
+    }
     this.listenTo(ImageStore, this.onStoreChange);
   },
 
   onStoreChange: function(){
     var self = this;
     if(this.isMounted()) {
-      console.log("store change");
       this.setState({ images: ImageStore.getAll() });
+      console.log("store change", this.state.images);
     }
   },
 
@@ -39,10 +41,12 @@ var Images = React.createClass({
     var self = this;
     // create all idea components
     this.state.images.forEach(function(image) {
+      console.log("in state for loop", image);
       // if (idea.name.toLowerCase().indexOf(self.props.filterText.toLowerCase()) !== -1)
         // if (idea.ownerName.toLowerCase().indexOf(self.props.filterNames.toLowerCase()) !== -1)
-      images.push(<Image key={image._id} _id={image._id} imgSrc={image.url} />);
+      images.push(<Image key={image.id} _id={image.id} imgSrc={image.url} imgThumbnail={image.thumbnail} imgCaption={image.caption} username={image.username} avatar={image.avatar} tags={image.tags} votes={image.votes} hearts={image.hearts} />);
     });
+    console.log("imgage array", images);
     return (
 
     <div>
