@@ -1,7 +1,7 @@
 var React = require("react");
 var Router = require('react-router');
 var App = require("./components/App");
-var IndexView = require("./components/IndexView/IndexView");
+var WallView = require("./components/WallView/WallView");
 var NotFoundView = require("./components/NotFoundView/NotFoundView");
 
 var DefaultRoute = Router.DefaultRoute;
@@ -11,7 +11,7 @@ var NotFoundRoute = Router.NotFoundRoute;
 
 var routes = (
   <Route name="app" path="/" handler={App}>
-    <DefaultRoute handler={IndexView} />
+    <DefaultRoute handler={WallView} />
     <NotFoundRoute handler={NotFoundView} />
   </Route>
 );
