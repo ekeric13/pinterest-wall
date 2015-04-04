@@ -2,6 +2,7 @@ var React = require("react");
 var Router = require('react-router');
 var Navigation = Router.Navigation;
 var Reflux = require("reflux");
+var Images = require("./WallViewComponents/Images");
 // var UserStore = require("../../stores/UserStore");
 var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 
@@ -36,6 +37,7 @@ var WallView = React.createClass({
     return (
       <div>
         <h1> Hey, this is wall view </h1>
+        <Images />
       </div>
     )
   }
