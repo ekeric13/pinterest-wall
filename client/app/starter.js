@@ -1,6 +1,6 @@
 var React = require("react");
 var Router = require('react-router');
-var BrainstormApp = require("./components/App");
+var App = require("./components/App");
 var IndexView = require("./components/IndexView/IndexView");
 var NotFoundView = require("./components/NotFoundView/NotFoundView");
 
@@ -11,7 +11,7 @@ var NotFoundRoute = Router.NotFoundRoute;
 
 var routes = (
   <Route name="app" path="/" handler={App}>
-    <DefaultRoute  handler={IndexView} />
+    <DefaultRoute handler={IndexView} />
     <NotFoundRoute handler={NotFoundView} />
   </Route>
 );
