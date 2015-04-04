@@ -9,12 +9,12 @@ var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 
 var PageNav = React.createClass({
 
-  mixins: [Navigation, Reflux.ListenerMixin, PureRenderMixin],
+  mixins: [Navigation, PureRenderMixin],
 
   getInitialState: function() {
-    // return {
+    return {
     //   currentUser: UserStore.get()
-    // };
+    };
   },
 
   onStoreChange: function() {

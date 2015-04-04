@@ -7,12 +7,12 @@ var RouteHandler = Router.RouteHandler;
 
 var App = React.createClass({
 
-  mixins: [Reflux.ListenerMixin],
+  mixins: [],
 
   getInitialState: function() {
-    // return {
+    return {
     //   currentUser: UserStore.get()
-    // };
+    };
   },
 
   onStoreChange: function(){

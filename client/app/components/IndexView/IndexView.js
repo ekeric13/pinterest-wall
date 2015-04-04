@@ -7,12 +7,12 @@ var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 
 var IndexView = React.createClass({
 
-  mixins: [Navigation, Reflux.ListenerMixin, PureRenderMixin],
+  mixins: [Navigation, PureRenderMixin],
 
   getInitialState: function() {
-    // return {
+    return {
     //   currentUser: UserStore.get()
-    // }
+    };
   },
 
   componentDidMount: function() {

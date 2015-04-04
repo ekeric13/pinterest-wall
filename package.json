@@ -1,31 +1,14 @@
 {
-  "name": "Pinterest-wall",
-  "version": "0.0.1",
-  "description": "Pinterest style wall",
+  "name": "pinterest-wall",
+  "version": "1.0.0",
+  "description": "",
   "main": "index.js",
-  "scripts": {
-    "start": "watchify -d client/app/starter.js -o client/app/bundle.js -v"
-  },
-  "browserify": {
-    "transform": [
-      [
-        "reactify",
-        {
-          "es6": true
-        }
-      ],
-      "envify"
-    ]
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ekeric13/pinterest-wall"
+    "url": "https://github.com/ekeric13/pinterest-wall.git"
   },
-  "keywords": [
-    "pinterest"
-  ],
-  "author": "Eric Kennedy",
-  "license": "MIT",
+  "author": "Eric Kennedy <ekeric13@gmail.com>",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/ekeric13/pinterest-wall/issues"
   },
@@ -52,6 +35,17 @@
     "react-tools": "^0.12.2",
     "reactify": "^1.0.0",
     "reflux": "^0.2.5",
+    "through": "^2.3.6",
     "watchify": "^2.3.0"
+  },
+  "scripts": {
+    "start": "watchify -o client/app/bundle.js -v -d client/app/starter.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "browserify": {
+    "transform": [
+      "reactify",
+      "envify"
+    ]
   }
 }
