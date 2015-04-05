@@ -5,6 +5,10 @@ var Image = require("./Image");
 var ImageStore = require("../../../stores/ImageStore");
 var ImageActions = require("../../../actions/ImageActions");
 
+// var MasonryMixin = require('react-masonry-mixin');
+// var masonryOptions = {
+//     transitionDuration: 0
+// };
 
 var Images = React.createClass({
 
@@ -40,17 +44,17 @@ var Images = React.createClass({
     var images = [];
     var self = this;
     // create all idea components
-    this.state.images.forEach(function(image) {
-      console.log("in state for loop", image);
+    this.state.images.forEach(function(image, index) {
+      console.log("in state for loop", index);
       // if (idea.name.toLowerCase().indexOf(self.props.filterText.toLowerCase()) !== -1)
         // if (idea.ownerName.toLowerCase().indexOf(self.props.filterNames.toLowerCase()) !== -1)
-      images.push(<Image key={image.id} _id={image.id} imgSrc={image.url} imgThumbnail={image.thumbnail} imgCaption={image.caption} username={image.username} avatar={image.avatar} tags={image.tags} votes={image.votes} hearts={image.hearts} />);
+      images.push(<Image key={index} id={index} _id={image.id} imgSrc={image.url} imgThumbnail={image.thumbnail} imgCaption={image.caption} username={image.username} avatar={image.avatar} tags={image.tags} votes={image.votes} hearts={image.hearts} />);
     });
     console.log("imgage array", images);
     return (
 
     <div>
-      <div>
+      <div className="columns">
         { images }
       </div>
     </div>
