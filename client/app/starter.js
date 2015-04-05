@@ -9,6 +9,9 @@ var Route = Router.Route;
 var RouteHandler = Router.RouteHandler;
 var NotFoundRoute = Router.NotFoundRoute;
 
+var injectTapEventPlugin = require("react-tap-event-plugin");
+injectTapEventPlugin();
+
 var routes = (
   <Route name="app" path="/" handler={App}>
     <DefaultRoute handler={WallView} />
