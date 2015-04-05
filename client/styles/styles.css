@@ -22,6 +22,8 @@ a:hover {
   text-align: center;
   font-family: GillSans, Calibri, Trebuchet, sans-serif;
   transition: all 0.45s ease-out;
+  height: 64px;
+  padding: 5px;
 }
 
 .pinterested:hover {
