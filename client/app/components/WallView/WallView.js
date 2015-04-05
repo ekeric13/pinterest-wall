@@ -12,6 +12,7 @@ var WallView = React.createClass({
 
   mixins: [Navigation, PureRenderMixin],
 
+
   getInitialState: function() {
     return {
       filterTag: ''

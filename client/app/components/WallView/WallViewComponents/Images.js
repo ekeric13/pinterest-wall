@@ -14,6 +14,10 @@ var Images = React.createClass({
 
   mixins: [Reflux.ListenerMixin],
 
+  propTypes: {
+    filterTag: React.PropTypes.string
+  },
+
   getInitialState: function () {
     return {
       images: ImageStore.getAll()

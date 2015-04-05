@@ -15,6 +15,19 @@ var Image = React.createClass({
 
   displayName: 'Image',
 
+  propTypes: {
+    id: React.PropTypes.number,
+    _id: React.PropTypes.number,
+    imgSrc: React.PropTypes.string,
+    imgThumbnail: React.PropTypes.string,
+    imgCaption: React.PropTypes.string,
+    avatar: React.PropTypes.string,
+    username: React.PropTypes.string,
+    votes: React.PropTypes.number,
+    hearts: React.PropTypes.number,
+    tags: React.PropTypes.array
+  },
+
   getInitialState: function() {
     return {
       lightbox: false

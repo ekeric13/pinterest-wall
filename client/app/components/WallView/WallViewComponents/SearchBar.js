@@ -6,7 +6,8 @@ var SearchBar = React.createClass({
   mixins: PureRenderMixin,
 
   propTypes: {
-    filterTag: React.PropTypes.string
+    filterTag: React.PropTypes.string,
+    onUserInput: React.PropTypes.func
   },
 
   handleChange: function() {
@@ -19,21 +20,20 @@ var SearchBar = React.createClass({
     e.preventDefault();
   },
 
-    render: function() {
-        return (
-
-            <form className="search-tag-form" onSubmit={this.handleSubmit}>
-                <span> Filter by tags: </span>
-                <input
-                    type="text"
-                    placeholder="Search for tag"
-                    value={this.props.filterTag}
-                    ref="filterTagInput"
-                    onChange={this.handleChange}
-                />
-            </form>
-        );
-    }
+  render: function() {
+      return (
+          <form className="search-tag-form" onSubmit={this.handleSubmit}>
+              <span> Filter by tags: </span>
+              <input
+                  type="text"
+                  placeholder="Search for tag"
+                  value={this.props.filterTag}
+                  ref="filterTagInput"
+                  onChange={this.handleChange}
+              />
+          </form>
+      );
+  }
 });
 
 module.exports = SearchBar;
