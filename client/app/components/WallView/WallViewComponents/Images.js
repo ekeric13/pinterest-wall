@@ -45,12 +45,19 @@ var Images = React.createClass({
     var self = this;
     // create all idea components
     this.state.images.forEach(function(image, index) {
-      console.log("in state for loop", index);
-      // if (idea.name.toLowerCase().indexOf(self.props.filterText.toLowerCase()) !== -1)
+      var tagsArray = image.tags;
+      var foundTag = false;
+      for (var i = 0; i < tagsArray.length; i++) {
+        var tag = tagsArray[i];
+        if (tag.toLowerCase().indexOf(self.props.filterTag.toLowerCase()) !== -1) {
+          foundTag = true;
+        }
+      }
+      if (foundTag) {
+        images.push(<Image key={index} id={index} _id={image.id} imgSrc={image.url} imgThumbnail={image.thumbnail} imgCaption={image.caption} username={image.username} avatar={image.avatar} tags={image.tags} votes={image.votes} hearts={image.hearts} />);
+      }
         // if (idea.ownerName.toLowerCase().indexOf(self.props.filterNames.toLowerCase()) !== -1)
-      images.push(<Image key={index} id={index} _id={image.id} imgSrc={image.url} imgThumbnail={image.thumbnail} imgCaption={image.caption} username={image.username} avatar={image.avatar} tags={image.tags} votes={image.votes} hearts={image.hearts} />);
     });
-    console.log("imgage array", images);
     return (
 
     <div>

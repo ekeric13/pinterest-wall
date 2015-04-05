@@ -60,7 +60,7 @@ var LightboxModal = React.createClass({
                     <span className="col offset-s1 s2 m2 l1 ion-android-arrow-up votes-icon"/>
 
             </div>
-            <div className="tags">{this.props.tags}</div>
+            <div className="lightbox-tags">{this.props.tags}</div>
           </div>
         </div>
       </div>

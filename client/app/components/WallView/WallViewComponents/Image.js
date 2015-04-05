@@ -80,7 +80,7 @@ var Image = React.createClass({
         <span className="col offset-s2 s1 offset-m2 m1 offset-l2 l1 votes-number">{this.props.votes}</span>
         <span className="col s2 m2 l2 ion-android-arrow-up votes-icon"/>
       </div>
-
+      <div className="tags">{this.props.tags}</div>
 
 
     </div>
