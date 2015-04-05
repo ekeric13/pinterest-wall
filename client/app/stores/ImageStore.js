@@ -8,12 +8,10 @@ var ImageStore = Reflux.createStore({
   _images: [],
 
   getAll: function() {
-    console.log("got all images");
     return this._images;
   },
 
   getAllImages: function() {
-    console.log("get all images");
 
     // to get more data:
     // http://getchute.com/v2/albums/aus6kwrg/assets?per_page=10
@@ -23,7 +21,6 @@ var ImageStore = Reflux.createStore({
     })
     .done(function (images) {
       var imageData = JSON.parse(images).data;
-      console.log("ajax complete2", JSON.parse(images));
 
 
       for (var i = 0; i < imageData.length; i++) {
@@ -41,7 +38,6 @@ var ImageStore = Reflux.createStore({
 
         this._images.push(imageAttributes);
       }
-      console.log("done with for loop", this._images);
       // broadcast that _images has changed
       this.trigger();
     }.bind(this))

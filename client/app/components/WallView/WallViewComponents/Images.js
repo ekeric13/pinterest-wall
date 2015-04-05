@@ -25,7 +25,6 @@ var Images = React.createClass({
   },
 
   componentDidMount: function () {
-    console.log("images component mount", this.state.images.length);
     if (this.state.images.length === 0) {
       ImageActions.getAllImages();
     }
@@ -36,7 +35,6 @@ var Images = React.createClass({
     var self = this;
     if(this.isMounted()) {
       this.setState({ images: ImageStore.getAll() });
-      console.log("store change", this.state.images);
     }
   },
 

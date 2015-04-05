@@ -34,11 +34,9 @@ var LightboxModal = React.createClass({
   },
 
   render: function() {
-    console.log("IMAGE ID", this.props.id);
     var modalId = "modal" + this.props.id;
     var imageId = "image-" + this.props.id;
     var avatarId = "avatar-" + this.props.id;
-    console.log("TAGS", this.props.tags);
     return (
       <div>
 

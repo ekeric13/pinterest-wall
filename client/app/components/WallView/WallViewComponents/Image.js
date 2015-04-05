@@ -22,18 +22,15 @@ var Image = React.createClass({
   },
 
   componentDidMount: function(){
-    console.log("props " +this.props._id, this.props);
     $("#image-" + this.props._id).css({"background-image": "url('"+this.props.imgSrc+"')"});
     // every other image (or at least some) is a bit smaller
     // $("#" + this.props._id).css("left", 275*(+this.props.id) +"px" );
     // if (this.props._id % 2 === 0) {
     //   $("#" + this.props._id).addClass("w2");
     // }
-    console.log("MOUNTED");
   },
 
   componentDidUpdate: function() {
-    console.log("MOUNTED4");
     // if (this.state.lightbox) {
     //   //activate materialize modal
     //    $('#modal1').openModal();
@@ -59,8 +56,6 @@ var Image = React.createClass({
     var classes = cx('image-container');
     var imageClasses = cx('image', h2Img ,'modal-trigger');
     var captionClasses = cx('image-caption', h2Cap);
-    console.log("key?")
-    console.log(this.props.id);
 
     // if (this.state.lightbox) {
     // }
