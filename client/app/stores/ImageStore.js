@@ -14,13 +14,12 @@ var ImageStore = Reflux.createStore({
 
   getAllImages: function() {
     console.log("get all images");
-    // var stub = [{_id: "1", url: "https://media.getchute.com/m/12I4gudgjf/c/2500342/500x300"}, {_id: "2", url: "https://media.getchute.com/m/12I4gudgjf/c/2500342/fit/500x300"}];
 
-    // this._images = stub;
-    // this.trigger();
+    // to get more data:
+    // http://getchute.com/v2/albums/aus6kwrg/assets?per_page=10
     $.ajax({
       type: 'GET',
-      url: 'http://getchute.com/v2/albums/aus6kwrg/assets/'
+      url: 'http://getchute.com/v2/albums/aus6kwrg/assets?per_page=20'
     })
     .done(function (images) {
       var imageData = JSON.parse(images).data;
