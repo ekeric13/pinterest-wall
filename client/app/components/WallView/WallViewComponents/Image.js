@@ -101,17 +101,20 @@ var Image = React.createClass({
   },
 
   lightboxOpen: function(e) {
+    // window.parallax.disable();
     e.preventDefault();
     var selector = '#modal' +this.props.id;
+
+    // Loop hole to get around parallax conflicting with modal
+    $(selector).appendTo("#main");
+
+
     $(selector).openModal({
       dismissible: true, // Modal can be dismissed by clicking outside of the modal
       opacity: .5, // Opacity of modal background
       in_duration: 300, // Transition in duration
       out_duration: 200, // Transition out duration
     });
-    // if (this.isMounted()) {
-    //   this.setState({lightbox : !this.state.lightbox});
-    // }
   }
 
   // handleStandardDialogTouchTap: function() {

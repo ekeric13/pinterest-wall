@@ -45,7 +45,7 @@ var WallView = React.createClass({
   render: function() {
     return (
       <div>
-        <h1> Hey, this is wall view </h1>
+        <h3> Here are your pinterests! </h3>
         <SearchBar
           filterTag={this.state.filterTag}
           onUserInput={this.handleUserInput}

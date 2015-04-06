@@ -9,7 +9,6 @@ var ImageActions = require("../../../actions/ImageActions");
 // var masonryOptions = {
 //     transitionDuration: 0
 // };
-
 var Images = React.createClass({
 
   mixins: [Reflux.ListenerMixin],
@@ -33,6 +32,33 @@ var Images = React.createClass({
       ImageActions.getAllImages();
     }
     this.listenTo(ImageStore, this.onStoreChange);
+
+    var self = this;
+    $(window).on("scroll", this.onWindowScroll);
+  },
+
+  onWindowScroll: function() {
+    var self = this;
+    if($(window).scrollTop() + $(window).height() > $(document).height() - 30) {
+      self.loadMoreImages();
+      console.log("loading!");
+    } else {
+      var loading = $(".load-more-btn").html();
+      if ( loading === "Loading more images") {
+        $(".load-more-btn").html("Want more?");
+      }
+    }
+  },
+
+  loadMoreImages: function() {
+    $(window).off("scroll");
+    $(".load-more-btn").html("Loading more images");
+    var self = this;
+    window.setTimeout(function(){
+      $(window).on("scroll", self.onWindowScroll);
+    }, 3000);
+    console.log("Here are the images");
+    ImageActions.getNewPage();
   },
 
   onStoreChange: function(){
@@ -49,7 +75,6 @@ var Images = React.createClass({
 
   render: function() {
     var images = [];
-    var sortedImages = [];
     var self = this;
     // create all idea components
     this.state.images.forEach(function(image, index) {
@@ -64,16 +89,70 @@ var Images = React.createClass({
       if (foundTag) {
         images.push(<Image key={index} id={index} _id={image.id} imgSrc={image.url} imgThumbnail={image.thumbnail} imgCaption={image.caption} username={image.username} avatar={image.avatar} tags={image.tags} votes={image.votes} hearts={image.hearts} />);
       }
-        // if (idea.ownerName.toLowerCase().indexOf(self.props.filterNames.toLowerCase()) !== -1)
     });
+
+    this.sortImages();
+
     return (
 
     <div>
-      <div className="columns">
+      <div id="scene" className="columns">
         { images }
       </div>
+      <div className="load-more-btn"></div>
+      <br/>
+      <br/>
     </div>
     );
+  },
+
+  componentDidUpdate: function() {
+    // console.log("update?");
+    // this.sortImages();
+  },
+
+  sortImages: function() {
+    var
+      columns = $(".columns"),
+      child = columns.find("div.image-container"),
+      len = $(".image-container").length,
+      frag = "", frag_origin = "",
+      currentWidth = 320, // default minimum-width
+      _activeWidth = 100;
+
+      function columCountAction(activeWidth) {
+        currentWidth = $(document).width();
+        if(frag_origin == "")
+          frag_origin = manipulateDom();
+          if(currentWidth >= activeWidth) { // check condition width
+              if(frag == "")
+                frag += manipulateDom(1);
+              columns.html(frag);
+
+          } else { // apply original DOM
+              columns.html(frag_origin);
+          }
+      } // columCountAction function
+      function manipulateDom(check) {
+        var i = k =0,container = "";
+        if(typeof check === "undefined") {
+          for(; i < len;i++)
+                  container += child[i].outerHTML;
+        } else {
+          for(; i < len;i++) {
+            if(i%2 == 0) {
+              container += child[i].outerHTML;
+            }
+          }
+          for(; k < len;k++) {
+            if(k%2 != 0) {
+                container += child[k].outerHTML;
+            }
+          }
+        }
+        return container;
+      }
+    columCountAction(_activeWidth);
   }
 
 

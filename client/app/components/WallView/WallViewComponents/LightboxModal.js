@@ -55,23 +55,29 @@ var LightboxModal = React.createClass({
 
         <div id={modalId} className="modal lightbox">
           <div className="modal-content">
-            <div className="user row">
-              <span id={avatarId} className="avatar col"/>
+            <div className="user nav-wrapper blue darken-3 row">
+              <span id={avatarId} className="avatar col offset-s1 offset-m1 offset-l1"/>
               <span className="username col s1 m1 l1"><span className="float-text">{this.props.username}</span></span>
             </div>
-            <div id={imageId} className='lightbox-image' />
-            <div className="lightbox-image-caption">
-              <span> {this.props.imgCaption} </span>
-            </div>
-            <div className="row lightbox-favorite">
-                    <span className="col offset-s1 s1 offset-m2 m1 offset-l2 l1 hearts-number">{this.props.hearts}</span>
-                    <span className="col offset-s1 s2 m2 l1 ion-heart hearts-icon" />
+            <div className="row">
+              <div id={imageId} className='lightbox-image col s6 m6 l6' />
 
-                    <span className="col offset-s2 s1 offset-m2 m1 offset-l4 l1 votes-number">{this.props.votes}</span>
-                    <span className="col offset-s1 s2 m2 l1 ion-android-arrow-up votes-icon"/>
+              <span className="col s6 m6 l6">
+                <div className="lightbox-image-caption">
+                  <span> {this.props.imgCaption} </span>
+                </div>
 
+                <div className="row lightbox-favorite">
+                        <span className="col offset-l1 l1 hearts-number">{this.props.hearts}</span>
+                        <span className="col offset-l1 l1 ion-heart hearts-icon" />
+
+                        <span className="col offset-l4 l1 votes-number">{this.props.votes}</span>
+                        <span className="col offset-l1 l1 ion-android-arrow-up votes-icon"/>
+
+                </div>
+                <div className="lightbox-tags">{this.props.tags}</div>
+              </span>
             </div>
-            <div className="lightbox-tags">{this.props.tags}</div>
           </div>
         </div>
       </div>
