@@ -66,9 +66,14 @@ var Image = React.createClass({
       h2Cap = 'height2Cap';
       h2Img = 'height2Img';
     }
-    var classes = cx('image-container');
+    var classes = cx('image-container', 'layer', 'expand-width');
     var imageClasses = cx('image', h2Img ,'modal-trigger');
     var captionClasses = cx('image-caption', h2Cap);
+
+    var min = 0;
+    var max = .2;
+    var calculateRandomNum = Math.random() * ( max - min) + min;
+    var dataDepth = calculateRandomNum.toString().substring(0,4);
 
     // if (this.state.lightbox) {
     // }
@@ -76,7 +81,7 @@ var Image = React.createClass({
     //   this.setState({lightbox : !this.state.lightbox});
     // }
     return (
-    <div id={this.props._id} className={classes}>
+    <div id={this.props._id} className={classes} data-depth={dataDepth}>
       <LightboxModal {...this.props} />
       <div id={imageId} className={imageClasses} onClick={this.lightboxOpen} />
       <div className={captionClasses}>

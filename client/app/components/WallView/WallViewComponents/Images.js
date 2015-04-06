@@ -40,10 +40,16 @@ var Images = React.createClass({
     if(this.isMounted()) {
       this.setState({ images: ImageStore.getAll() });
     }
+
+    // jQuery actions after images load
+    var scene = document.getElementById('scene');
+    window.parallax = new Parallax(scene);
+    $(".load-more-btn").html("Want more?");
   },
 
   render: function() {
     var images = [];
+    var sortedImages = [];
     var self = this;
     // create all idea components
     this.state.images.forEach(function(image, index) {

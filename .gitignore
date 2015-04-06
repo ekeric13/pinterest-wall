@@ -4,3 +4,4 @@ npm-debug.log
 client/app/bundle.js
 client/app/.bundle.js
 !client/lib/materialize.js
+!client/lib/parallax.js
