@@ -16,43 +16,49 @@ var Images = React.createClass({
     return {
       images: ImageStore.getAll()
     };
-    // var stub = [{_id: "1", url: "https://media.getchute.com/m/12I4gudgjf/c/2500342/500x300"}, {_id: "2", url: "https://media.getchute.com/m/12I4gudgjf/c/2500342/fit/500x300"}];
-    // return {
-    //   images: stub
-    // };
   },
 
   componentDidMount: function () {
     if (this.state.images.length === 0) {
       ImageActions.getAllImages();
+      $(".search-tag-form").before("<div class='loading'></div>");
     }
     this.listenTo(ImageStore, this.onStoreChange);
 
-    var self = this;
-    $(window).on("scroll", this.onWindowScroll);
-  },
+    $(".load-more-btn").on("click", this.loadMoreImages);
+    $(window).on("resize", this.startResizingWindow);
 
-  onWindowScroll: function() {
-    var self = this;
-    if($(window).scrollTop() + $(window).height() > $(document).height() - 30) {
-      self.loadMoreImages();
-      console.log("loading!");
-    } else {
-      var loading = $(".load-more-btn").html();
-      if ( loading === "Loading more images") {
-        $(".load-more-btn").html("Want more?");
-      }
+    if ( $('.image-container') ){
+      this.masonize();
+      this.parralaxize();
     }
   },
 
+  startResizingWindow: function() {
+    window.parallax.disable();
+  },
+
+  doneResizingWindow: function() {
+    window.parallax.enable();
+  },
+
+  masonize: function() {
+    var imageGrid = document.querySelector('.columns');
+    var masonedImages = new Masonry(imageGrid, {
+      columnWidth: 300,
+      itemSelector: '.image-container',
+      isFitWidth: true,
+      gutter: 20
+    });
+    masonedImages.on("layoutComplete", this.doneResizingWindow);
+  },
+
+  parralaxize: function() {
+    var scene = document.getElementById('scene');
+    window.parallax = new Parallax(scene);
+  },
+
   loadMoreImages: function() {
-    $(window).off("scroll");
-    $(".load-more-btn").html("Loading more images");
-    var self = this;
-    window.setTimeout(function(){
-      $(window).on("scroll", self.onWindowScroll);
-    }, 3000);
-    console.log("Here are the images");
     ImageActions.getNewPage();
   },
 
@@ -63,9 +69,8 @@ var Images = React.createClass({
     }
 
     // jQuery actions after images load
-    var scene = document.getElementById('scene');
-    window.parallax = new Parallax(scene);
-    $(".load-more-btn").html("Want more?");
+    this.parralaxize();
+    this.masonize();
   },
 
   render: function() {
@@ -86,68 +91,26 @@ var Images = React.createClass({
       }
     });
 
-    this.sortImages();
+
 
     return (
 
-    <div>
+    <div className="image-columns">
       <div id="scene" className="columns">
         { images }
       </div>
-      <div className="load-more-btn"></div>
       <br/>
       <br/>
+      <div className="load-more-btn blue darken-3 waves-effect waves-light btn">Want more?</div>
     </div>
     );
   },
 
   componentDidUpdate: function() {
-    // console.log("update?");
-    // this.sortImages();
-  },
-
-  sortImages: function() {
-    var
-      columns = $(".columns"),
-      child = columns.find("div.image-container"),
-      len = $(".image-container").length,
-      frag = "", frag_origin = "",
-      currentWidth = 320, // default minimum-width
-      _activeWidth = 100;
-
-      function columCountAction(activeWidth) {
-        currentWidth = $(document).width();
-        if(frag_origin == "")
-          frag_origin = manipulateDom();
-          if(currentWidth >= activeWidth) { // check condition width
-              if(frag == "")
-                frag += manipulateDom(1);
-              columns.html(frag);
-
-          } else { // apply original DOM
-              columns.html(frag_origin);
-          }
-      } // columCountAction function
-      function manipulateDom(check) {
-        var i = k =0,container = "";
-        if(typeof check === "undefined") {
-          for(; i < len;i++)
-                  container += child[i].outerHTML;
-        } else {
-          for(; i < len;i++) {
-            if(i%2 == 0) {
-              container += child[i].outerHTML;
-            }
-          }
-          for(; k < len;k++) {
-            if(k%2 != 0) {
-                container += child[k].outerHTML;
-            }
-          }
-        }
-        return container;
-      }
-    columCountAction(_activeWidth);
+    if ($(".loading")) {
+      $(".loading").remove();
+    }
+    this.masonize();
   }
 
 
