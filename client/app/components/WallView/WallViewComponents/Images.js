@@ -111,6 +111,7 @@ var Images = React.createClass({
       $(".loading").remove();
     }
     this.masonize();
+    this.parralaxize();
   }
 
 
