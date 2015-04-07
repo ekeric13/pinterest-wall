@@ -1,14 +1,9 @@
 var React = require("react");
 var Reflux = require("reflux");
 var Image = require("./Image");
-
 var ImageStore = require("../../../stores/ImageStore");
 var ImageActions = require("../../../actions/ImageActions");
 
-// var MasonryMixin = require('react-masonry-mixin');
-// var masonryOptions = {
-//     transitionDuration: 0
-// };
 var Images = React.createClass({
 
   mixins: [Reflux.ListenerMixin],

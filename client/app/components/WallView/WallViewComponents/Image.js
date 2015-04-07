@@ -1,15 +1,5 @@
 var React = require("react");
-// var Lightbox = require("./Lightbox");
-var ReactBootstrap = require("react-bootstrap");
-var mui = require('material-ui');
-var Dialog = mui.Dialog;
-var Modal = ReactBootstrap.Modal;
-var ModalTrigger = ReactBootstrap.ModalTrigger;
-var LightboxModal = require("./LightboxModal");
-// var NewDialog = require("./NewDialog");
-
 var cx = React.addons.classSet;
-
 
 var Image = React.createClass({
 
@@ -36,20 +26,8 @@ var Image = React.createClass({
 
   componentDidMount: function(){
     $("#image-" + this.props._id).css({"background-image": "url('"+this.props.imgSrc+"')"});
-    // every other image (or at least some) is a bit smaller
-    // $("#" + this.props._id).css("left", 275*(+this.props.id) +"px" );
-    // if (this.props._id % 2 === 0) {
-    //   $("#" + this.props._id).addClass("w2");
-    // }
   },
 
-  componentDidUpdate: function() {
-    // if (this.state.lightbox) {
-    //   //activate materialize modal
-    //    $('#modal1').openModal();
-    //    // this.setState({lightbox : !this.state.lightbox});
-    // }
-  },
 
   render: function(){
     var standardActions = [
@@ -104,7 +82,6 @@ var Image = React.createClass({
     // window.parallax.disable();
     e.preventDefault();
     var selector = '#modal' +this.props.id;
-
     // Loop hole to get around parallax conflicting with modal
     $(selector).appendTo("#main");
 

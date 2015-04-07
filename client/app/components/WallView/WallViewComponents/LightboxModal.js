@@ -68,12 +68,10 @@ var LightboxModal = React.createClass({
                 </div>
 
                 <div className="row lightbox-favorite">
-                        <span className="col offset-l1 l1 hearts-number">{this.props.hearts}</span>
-                        <span className="col offset-l1 l1 ion-heart hearts-icon" />
-
-                        <span className="col offset-l4 l1 votes-number">{this.props.votes}</span>
-                        <span className="col offset-l1 l1 ion-android-arrow-up votes-icon"/>
-
+                  <span className="col offset-l1 l1 hearts-number">{this.props.hearts}</span>
+                  <span className="col offset-l1 l1 ion-heart hearts-icon" />
+                  <span className="col offset-l4 l1 votes-number">{this.props.votes}</span>
+                  <span className="col offset-l1 l1 ion-android-arrow-up votes-icon"/>
                 </div>
                 <div className="lightbox-tags">{this.props.tags}</div>
               </span>

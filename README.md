@@ -37,9 +37,9 @@ All the components will be bundled into a file called bundle.js that is then req
 In a new terminal tab other than the one running `npm start` run:
 
 ```sh
-cd client | python -m SimpleHTTPServer
+cd client; python -m SimpleHTTPServer
 ```
 
 To create a temporary server.
 
-Now visit http://localhost:8000.
+Now visit http://localhost:8000 to see the site in development.

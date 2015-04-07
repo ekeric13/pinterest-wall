@@ -69,7 +69,6 @@ var ImageStore = Reflux.createStore({
 
       this._images.push(imageAttributes);
     }
-    console.log(this._images);
   }
 
 });
