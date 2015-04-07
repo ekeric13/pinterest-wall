@@ -4,8 +4,24 @@ body {
   font-family: lato;
 }
 
-body {
-  /*padding: 10px 5px;*/
+.loading:before {
+  content: "Loading";
+  font-size: 2rem;
+  position: absolute;
+  bottom: 100%;
+  left: -100%;
+}
+
+.loading {
+  background: url(../styles/assets/loading.gif) no-repeat;
+  background-position: center center;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  width: 32px;
+  height: 32px;
+  background-color: #CFCFCF;
+  border-radius: 50%;
 }
 
 a:hover {
