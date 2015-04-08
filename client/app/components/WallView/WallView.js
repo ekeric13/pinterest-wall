@@ -23,11 +23,13 @@ var WallView = React.createClass({
 
   render: function() {
     return (
-      <div>
-        <SearchBar
-          filterTag={this.state.filterTag}
-          onUserInput={this.handleUserInput}
-         />
+      <div className="wall">
+        <div className="searchbar">
+          <SearchBar
+            filterTag={this.state.filterTag}
+            onUserInput={this.handleUserInput}
+          />
+         </div>
         <Images filterTag={this.state.filterTag} />
       </div>
     )

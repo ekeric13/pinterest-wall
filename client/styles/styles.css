@@ -49,6 +49,14 @@ a:hover {
   cursor: pointer;
 }
 
+.wall {
+  background-color: #EAEAEA;
+}
+
+.searchbar {
+  background-color: white;
+}
+
 .search-tag-form {
   padding-left: 10px;
   width: 50%;
@@ -56,10 +64,6 @@ a:hover {
 
 .search-tag-form > span {
   font-size: 20px;
-}
-
-.image-columns {
-  background-color: #EAEAEA;
 }
 
 .columns {

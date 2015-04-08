@@ -40,14 +40,14 @@ var Image = React.createClass({
     var imageLightboxHref = this.props.imgSrc;
     var lightboxNum = this.props.id;
     var w2 = this.props._id % 3 === 0 ? 'w2' : '';
-    var w3 = this.props._id % 4 === 0 ? 'w3' : '';
+    // var w3 = this.props._id % 4 === 0 ? 'w3' : '';
     var h2Cap;
     var h2Img;
     if (this.props._id % 2 === 0) {
       h2Cap = 'height2Cap';
       h2Img = 'height2Img';
     }
-    var classes = cx('image-container', 'layer', 'expand-width', w2, w3);
+    var classes = cx('image-container', 'layer', 'expand-width', w2);
     var imageClasses = cx('image', h2Img ,'modal-trigger');
     var captionClasses = cx('image-caption', h2Cap);
 

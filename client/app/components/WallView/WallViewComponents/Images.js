@@ -4,6 +4,9 @@ var Image = require("./Image");
 var ImageStore = require("../../../stores/ImageStore");
 var ImageActions = require("../../../actions/ImageActions");
 
+var parallaxizedDone = false;
+var gotImages = false;
+
 var Images = React.createClass({
 
   mixins: [Reflux.ListenerMixin],
@@ -27,9 +30,12 @@ var Images = React.createClass({
 
     $(".load-more-btn").on("click", this.loadMoreImages);
     $(window).on("resize", this.startResizingWindow);
+    $(window).resize(_.debounce(this.doneResizingWindow, 2000));
 
-    if ( $('.image-container') ){
+    // short-term hack to get around history api
+    if (gotImages){
       this.masonize();
+      parallaxizedDone = false
       this.parralaxize();
     }
   },
@@ -39,23 +45,48 @@ var Images = React.createClass({
   },
 
   doneResizingWindow: function() {
-    window.parallax.enable();
+    windowResizeDone = true;
+    this.enableParallaxAgain();
+  },
+
+  doneMasonizing: function() {
+    masonizeDone = true;
+    this.enableParallaxAgain();
+  },
+
+  enableParallaxAgain: function() {
+    if (masonizeDone) {
+      if (windowResizeDone) {
+        window.parallax.enable();
+        window.parallax.updateLayers();
+      }
+    }
   },
 
   masonize: function() {
     var imageGrid = document.querySelector('.columns');
+    var height = $(".columns").height();
+
+    if( height > 0 ) { // or some other number
+        $(".columns").height( height );
+    }
     var masonedImages = new Masonry(imageGrid, {
       columnWidth: 300,
       itemSelector: '.image-container',
       isFitWidth: true,
       gutter: 20
     });
-    masonedImages.on("layoutComplete", this.doneResizingWindow);
+    masonedImages.bindResize();
+    masonedImages.reloadItems();
+    masonedImages.on("layoutComplete", this.doneMasonizing);
   },
 
   parralaxize: function() {
-    var scene = document.getElementById('scene');
-    window.parallax = new Parallax(scene);
+    if (!parallaxizedDone) {
+      var scene = document.getElementById('scene');
+      window.parallax = new Parallax(scene);
+      parallaxizedDone = true;
+    }
   },
 
   loadMoreImages: function() {
@@ -68,9 +99,10 @@ var Images = React.createClass({
       this.setState({ images: ImageStore.getAll() });
     }
 
+    gotImages = true;
     // jQuery actions after images load
-    this.parralaxize();
     this.masonize();
+    this.parralaxize();
   },
 
   render: function() {
@@ -111,7 +143,11 @@ var Images = React.createClass({
       $(".loading").remove();
     }
     this.masonize();
-    this.parralaxize();
+
+    // avoid parallax while images are filtered
+    if ( $(".image-container") >= 20){
+      this.parralaxize();
+    }
   }
 
 
